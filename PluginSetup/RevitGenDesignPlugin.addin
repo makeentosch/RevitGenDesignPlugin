@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+<AddIn Type="Command">
+	<Name>RevitGenDesignPlugin</Name>
+	<FullClassName>RevitGenDesignPlugin.MainClass</FullClassName>
+	<Text>RevitGenDesignPlugin</Text>
+	<Description>Generates an apartment plan</Description>
+	<VisibilityMode>AlwaysVisible</VisibilityMode>
+	<Assembly>RevitGenDesignPlugin\RevitPlugin.dll</Assembly>
+	<AddInId>0711C36E-0055-4DDA-B4F9-D6D6EA29A9D4</AddInId>
+	<VendorId>UrFU</VendorId>
+	<VendorDescription>Ural Federal University</VendorDescription>
+</AddIn>
+</RevitAddIns>
