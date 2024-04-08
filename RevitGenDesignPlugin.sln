@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.9.34607.119
+VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitGenDesignPlugin", "RevitGenDesignPlugin.csproj", "{4F2F5C62-F786-44DB-88DA-FE5D672B9293}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitPlugin", "RevitPlugin\RevitPlugin.csproj", "{AD5EA84B-9F75-4F57-87D8-EFF052FBD378}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PluginSetup", "PluginSetup\PluginSetup.vdproj", "{42A8BBF7-9463-43C1-9555-AC37A60F6E23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4F2F5C62-F786-44DB-88DA-FE5D672B9293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F2F5C62-F786-44DB-88DA-FE5D672B9293}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F2F5C62-F786-44DB-88DA-FE5D672B9293}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F2F5C62-F786-44DB-88DA-FE5D672B9293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5EA84B-9F75-4F57-87D8-EFF052FBD378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5EA84B-9F75-4F57-87D8-EFF052FBD378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5EA84B-9F75-4F57-87D8-EFF052FBD378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5EA84B-9F75-4F57-87D8-EFF052FBD378}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A8BBF7-9463-43C1-9555-AC37A60F6E23}.Debug|Any CPU.ActiveCfg = Debug
+		{42A8BBF7-9463-43C1-9555-AC37A60F6E23}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0AB66A74-CAAE-4956-A0BE-81B48E27568A}
+		SolutionGuid = {D2995D4B-C599-4509-896E-4BAF9CDA08FE}
 	EndGlobalSection
 EndGlobal
