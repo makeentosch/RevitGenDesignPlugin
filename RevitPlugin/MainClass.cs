@@ -1,50 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autodesk.Revit.ApplicationServices;
-using Autodesk.Revit.Attributes;
+﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using Autodesk.Revit.DB.Architecture;
+using System.Linq;
 
 namespace RevitGenDesignPlugin
 {
-    [Transaction(TransactionMode.Manual)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class MainClass : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            var uiapp = commandData.Application;
-            var doc = uiapp.ActiveUIDocument.Document;
+	[Transaction(TransactionMode.Manual)]
+	[Regeneration(RegenerationOption.Manual)]
+	public class MainClass : IExternalCommand
+	{
+		public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+		{
+			var uiapp = commandData.Application;
+			var doc = uiapp.ActiveUIDocument.Document;
+			var sel = uiapp.ActiveUIDocument.Selection;
 
-            var sel = uiapp.ActiveUIDocument.Selection;
-            var pickedref = sel.PickObject(ObjectType.Element, "Выберите объект из категории стены"); // фильтр?
-            var elem = doc.GetElement(pickedref);
-            if (elem is AssemblyInstance assemblyInstance)
-            {
-                var memIds = assemblyInstance.GetMemberIds();
-                if (memIds.Count != 1) return Result.Failed;
-                elem = doc.GetElement(memIds.First());
-            }
+			Reference pickedref;
+			try
+			{
+				pickedref = sel.PickObject(ObjectType.Element, new RevitPlugin.WallSelectionFilter(), "Выберите экземпляр семейства Стены");
+			}
+			catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+			{
+				TaskDialog.Show("Отмена", "Пользователь отменил операцию");
+				return Result.Cancelled;
+			}
 
-			var shapes = elem.GetGeometryObjectFromReference(new Reference(elem)) as GeometryElement;
-            foreach (var geometryObject in shapes)
-            {
-                if (geometryObject is Face face)
-                {
-                    var curves = face.GetEdgesAsCurveLoops();
-                }
-            }
+			var wall = doc.GetElement(pickedref) as FamilyInstance;
+			var geometry = wall.Symbol.get_Geometry(new Options());
+			var solid = geometry.Select(t => t as Solid).First(t => t.Volume > 0);
+			var face = solid.Faces.Cast<PlanarFace>().First(t => t.FaceNormal.Multiply(-1).IsAlmostEqualTo(XYZ.BasisZ));
+			var edges = face.GetEdgesAsCurveLoops().Single();
+			foreach (var line in edges)
+			{
+				TaskDialog.Show("Длина грани", line.Length.ToString());
+			}
 
-            //var trans = new Transaction(doc);
-            //trans.Start("");
-            //trans.Commit();
+			//var trans = new Transaction(doc);
+			//trans.Start("");
+			//trans.Commit();
 
-            return Result.Succeeded;
-        }
-    }
+			return Result.Succeeded;
+		}
+		/* С помощью фильтра при выделении объекта удалось добиться выбора экземпляра семейста Стены, даже если они в сборке.
+         * На случай отмены операции пользователем обернул выделение в try...catch.
+         * Итак мы получаем объект FamilyInstance. Информация о геометрии хранится в FamilySymbol (не разобрался что это из себя представляет).
+         * В GeometryElement должны получится твёрдые тела (Solid). Почему-то присутствует не одно, а два тела. Второе нулевого объёма.
+         * Выбираем грань, которая соответствует полу. Разбираем грань на циклы из кривых. Цикл должен получиться один, так как весь периметр замкнут
+         * в один цикл. 
+         */
+	}
 }

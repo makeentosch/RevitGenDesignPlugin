@@ -21,14 +21,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DD2823B4945447939074EB829B8EA313"
+        "MsmKey" = "8:_CBF49AE4D3FE4E4AA40BA7D10655D545"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DD2823B4945447939074EB829B8EA313"
+        "OwnerKey" = "8:_CBF49AE4D3FE4E4AA40BA7D10655D545"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -49,6 +49,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 и x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -130,14 +146,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DD2823B4945447939074EB829B8EA313"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CBF49AE4D3FE4E4AA40BA7D10655D545"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:RevitPlugin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_DD2823B4945447939074EB829B8EA313"
+                    "_CBF49AE4D3FE4E4AA40BA7D10655D545"
                     {
                     "Name" = "8:RevitPlugin.dll"
                     "Attributes" = "3:512"
