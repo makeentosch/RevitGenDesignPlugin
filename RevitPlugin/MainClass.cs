@@ -9,7 +9,7 @@ namespace RevitPlugin
 {
 	[Transaction(TransactionMode.Manual)]
 	[Regeneration(RegenerationOption.Manual)]
-	public class GenerateCommand : IExternalCommand
+	public class MainClass : IExternalCommand
 	{
 		public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
 		{
