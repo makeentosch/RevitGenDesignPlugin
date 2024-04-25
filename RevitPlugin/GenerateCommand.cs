@@ -2,13 +2,14 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
+using RevitPlugin.View;
 using System.Linq;
 
-namespace RevitGenDesignPlugin
+namespace RevitPlugin
 {
 	[Transaction(TransactionMode.Manual)]
 	[Regeneration(RegenerationOption.Manual)]
-	public class MainClass : IExternalCommand
+	public class GenerateCommand : IExternalCommand
 	{
 		public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
 		{
@@ -19,11 +20,10 @@ namespace RevitGenDesignPlugin
 			Reference pickedref;
 			try
 			{
-				pickedref = sel.PickObject(ObjectType.Element, new RevitPlugin.WallSelectionFilter(), "Выберите экземпляр семейства Стены");
+				pickedref = sel.PickObject(ObjectType.Element, new WallSelectionFilter(), "Выберите экземпляр семейства Стены");
 			}
 			catch (Autodesk.Revit.Exceptions.OperationCanceledException)
 			{
-				TaskDialog.Show("Отмена", "Пользователь отменил операцию");
 				return Result.Cancelled;
 			}
 
@@ -32,16 +32,19 @@ namespace RevitGenDesignPlugin
 			var solid = geometry.Select(t => t as Solid).First(t => t.Volume > 0);
 			var face = solid.Faces.Cast<PlanarFace>().First(t => t.FaceNormal.Multiply(-1).IsAlmostEqualTo(XYZ.BasisZ));
 			var edges = face.GetEdgesAsCurveLoops().Single();
-			foreach (var line in edges)
-			{
-				TaskDialog.Show("Длина грани", line.Length.ToString());
-			}
+			//foreach (var line in edges)
+			//{
+			//	TaskDialog.Show("Длина грани", line.Length.ToString());
+			//}
 
 			//var trans = new Transaction(doc);
 			//trans.Start("");
 			//trans.Commit();
 
-			return Result.Succeeded;
+			var mainWindow = new PluginUI();
+			var result = mainWindow.ShowDialog() ?? false;
+
+			return result ? Result.Succeeded : Result.Cancelled;	
 		}
 		/* С помощью фильтра при выделении объекта удалось добиться выбора экземпляра семейста Стены, даже если они в сборке.
          * На случай отмены операции пользователем обернул выделение в try...catch.

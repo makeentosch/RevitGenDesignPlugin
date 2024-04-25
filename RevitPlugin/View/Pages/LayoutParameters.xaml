@@ -1,0 +1,41 @@
+﻿<Page x:Class="RevitPlugin.View.Pages.LayoutParameters"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RevitPlugin.View.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <DataGrid Grid.Row="0"
+          Name="table"
+          Width="600"
+          Height="300"
+          AutoGenerateColumns="False"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Top"
+          CanUserResizeRows="False"
+          CanUserAddRows="True"
+          CanUserDeleteRows="True"
+          ItemsSource="{Binding LayoutParameters}"
+          Margin="0,50,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Width="*" Binding="{Binding Path=Name}"/>
+                    <DataGridTextColumn Header="Ширина" Width="*" Binding="{Binding Path=Width}"/>
+                    <DataGridTextColumn Header="Площадь" Width="*" Binding="{Binding Path=Area}"/>
+                    <DataGridTextColumn Header="Отношение сторон" Width="*" Binding="{Binding Path=Ratio}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--<Button Width="98" Content="Добавить" Command="{Binding AddTableRow}" Margin="502, 10, 0, 0"/>-->
+        </StackPanel>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Width="98" Content="Далее" Command="{Binding NextPage}"/>
+            <Button Width="98" Content="Отмена" Margin="5,0,0,0" Command="{Binding Cancel}"/>
+        </StackPanel>
+    </Grid>
+</Page>
