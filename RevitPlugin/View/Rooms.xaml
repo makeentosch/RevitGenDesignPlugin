@@ -1,0 +1,119 @@
+﻿<Window x:Class="RevitPlugin.View.Rooms"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:RevitPlugin"
+        mc:Ignorable="d"
+        Background="#91B6E5"
+        d:DesignHeight="650" d:DesignWidth="950">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Margin="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Height="920">
+            <StackPanel>
+                <Canvas Background="#CBE1F5"
+                        x:Name="RoomCanvas"
+                        Margin="30,20,80,50"
+                        Width="420"
+                        Height="400"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+                    <Canvas.LayoutTransform>
+                        <ScaleTransform ScaleY="-1">
+                        </ScaleTransform>
+                    </Canvas.LayoutTransform>
+                </Canvas>
+                <Button Background="#CBE1F5"
+                        Width="420"
+                        Height="70"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="30 0 0 0"
+                        BorderThickness="2"
+                        Foreground="Black"
+                        ButtonBase.Click="Generate_Appartment">
+                    Сгенерировать выбранную комнату
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Margin="0 20 0 0">
+                    <Canvas x:Name="FirstPreview"
+                            Background="#CBE1F5"
+                            Width="160"
+                            Height="170"
+                            Margin="0 0 70 0"
+                            MouseLeftButtonDown="CanvasPreview_Click">
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleY="-1">
+                            </ScaleTransform>
+                        </Canvas.LayoutTransform>
+                    </Canvas>
+                    <Canvas x:Name="SecondPreview"
+                            Background="#CBE1F5"
+                            Width="160"
+                            Height="170"
+                            MouseLeftButtonDown="CanvasPreview_Click">
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleY="-1">
+                            </ScaleTransform>
+                        </Canvas.LayoutTransform>
+                    </Canvas>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Margin="0 20 0 0">
+                    <Canvas x:Name="ThirdPreview"
+                            Background="#CBE1F5"
+                            Width="160"
+                            Height="170"
+                            Margin="0 0 70 0"
+                            MouseLeftButtonDown="CanvasPreview_Click">
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleY="-1">
+                            </ScaleTransform>
+                        </Canvas.LayoutTransform>
+                    </Canvas>
+                    <Canvas x:Name="FourthPreview"
+                            Background="#CBE1F5"
+                            Width="160"
+                            Height="170"
+                            MouseLeftButtonDown="CanvasPreview_Click">
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleY="-1">
+                            </ScaleTransform>
+                        </Canvas.LayoutTransform>
+                    </Canvas>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Margin="0 20 0 0">
+                    <Canvas x:Name="FifthPreview"
+                            Background="#CBE1F5"
+                            Width="160"
+                            Height="170"
+                            Margin="0 0 70 0"
+                            MouseLeftButtonDown="CanvasPreview_Click">
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleY="-1">
+                            </ScaleTransform>
+                        </Canvas.LayoutTransform>
+                    </Canvas>
+                    <Canvas x:Name="SixthPreview"
+                            Background="#CBE1F5"
+                            Width="160"
+                            Height="170"
+                            MouseLeftButtonDown="CanvasPreview_Click">
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleY="-1">
+                            </ScaleTransform>
+                        </Canvas.LayoutTransform>
+                    </Canvas>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

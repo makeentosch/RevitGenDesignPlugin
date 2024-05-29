@@ -44,7 +44,7 @@ namespace RevitPlugin
 			var mainWindow = new PluginUI();
 			var result = mainWindow.ShowDialog() ?? false;
 
-			return result ? Result.Succeeded : Result.Cancelled;	
+			return result ? Result.Succeeded : Result.Cancelled;
 		}
 		/* С помощью фильтра при выделении объекта удалось добиться выбора экземпляра семейста Стены, даже если они в сборке.
          * На случай отмены операции пользователем обернул выделение в try...catch.

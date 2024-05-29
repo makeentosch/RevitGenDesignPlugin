@@ -24,13 +24,13 @@ namespace RevitPlugin.ViewModel
 			new RoomParameters("Коридор", 1.2, 5, 0.5),
 			new RoomParameters("Ванная", 1.7, 4, 0.5)
 		};
-        public RelayCommand NextPage { get => new RelayCommand(GoToNextPage); }
-        public RelayCommand PreviousPage { get => new RelayCommand(GoToPreviousPage); }
-        public RelayCommand Cancel { get => new RelayCommand(CancelingOperation); }
+		public RelayCommand NextPage { get => new RelayCommand(GoToNextPage); }
+		public RelayCommand PreviousPage { get => new RelayCommand(GoToPreviousPage); }
+		public RelayCommand Cancel { get => new RelayCommand(CancelingOperation); }
 
-        public CommandSetupVM(PluginUI ui)
-        {
-            this.ui = ui;
+		public CommandSetupVM(PluginUI ui)
+		{
+			this.ui = ui;
 			var frame = new LayoutParameters() { DataContext = this };
 			frame.table.InitializingNewItem += (sender, args) =>
 			{
@@ -39,23 +39,23 @@ namespace RevitPlugin.ViewModel
 			this.ui.mainFrame.Navigate(frame);
 		}
 
-        public void GoToNextPage()
-        {
-            var currentPage = ui.mainFrame.Content;
-            Page nextPage;
-            if (currentPage is LayoutParameters)
-            {
-                nextPage = new GeneratorParameters();
-            }
-            else if (currentPage is GeneratorParameters)
-            {
+		public void GoToNextPage()
+		{
+			var currentPage = ui.mainFrame.Content;
+			Page nextPage;
+			if (currentPage is LayoutParameters)
+			{
+				nextPage = new GeneratorParameters();
+			}
+			else if (currentPage is GeneratorParameters)
+			{
 				nextPage = new SelectLayout(); //new WaitFinish();
 			}
-            else throw new Exception("Unexpexted page in main frame");
+			else throw new Exception("Unexpexted page in main frame");
 
-            nextPage.DataContext = this;
-            ui.mainFrame.Navigate(nextPage);
-        }
+			nextPage.DataContext = this;
+			ui.mainFrame.Navigate(nextPage);
+		}
 
 		public void GoToPreviousPage()
 		{

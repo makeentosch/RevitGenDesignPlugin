@@ -9,14 +9,10 @@ namespace RevitPlugin
     {
         internal const double WidthOuterWall = 0.82; // в футах (250мм) 
         internal const double WidthInnerWall = 0.49; // в футах (150мм)
-
-
+        
         /// <summary>
         /// Генерирует комнаты внутри квартиры
         /// </summary>
-        /// <param name="contourFlat"></param>
-        /// <param name="rooms"></param>
-        /// <returns></returns>
         public static List<List<Room>> GetShapes(ContourFlat2D contourFlat, List<Room> rooms)
         {
             var contourWithoutWalls = GetContourWithoutWalls(contourFlat);
