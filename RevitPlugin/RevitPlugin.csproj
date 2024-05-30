@@ -55,16 +55,22 @@
     <Reference Include="CommunityToolkit.Mvvm, Version=8.2.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
       <HintPath>..\packages\CommunityToolkit.Mvvm.8.2.2\lib\netstandard2.0\CommunityToolkit.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="GeneticSharp.Domain, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeneticSharp.2.6.0\lib\net462\GeneticSharp.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="GeneticSharp.Infrastructure.Framework, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeneticSharp.2.6.0\lib\net462\GeneticSharp.Infrastructure.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI">
-      <HintPath>..\..\..\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+      <HintPath>$(PROGRAMFILES)\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>..\..\..\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+      <HintPath>$(PROGRAMFILES)\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -75,6 +81,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -98,15 +105,32 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlatContour2D.cs" />
-    <Compile Include="GenAlgorithms\AreaChromosome.cs" />
-    <Compile Include="GenAlgorithms\AreaFitness.cs" />
-    <Compile Include="GenAlgorithms\AreaReinsertion.cs" />
-    <Compile Include="GenAlgorithms\AreaTournamentSelection.cs" />
-    <Compile Include="GenAlgorithms\RoomGene.cs" />
-    <Compile Include="Generate.cs" />
     <Compile Include="MainClass.cs" />
+    <Compile Include="Model\GeneratedArea.cs" />
+    <Compile Include="Model\GeneticAlgorithm\AreaChromosome.cs" />
+    <Compile Include="Model\GeneticAlgorithm\AreaFitness.cs" />
+    <Compile Include="Model\GeneticAlgorithm\AreaReinsertion.cs" />
+    <Compile Include="Model\GeneticAlgorithm\AreaTournamentSelection.cs" />
+    <Compile Include="Model\GeneticAlgorithm\RoomGene.cs" />
+    <Compile Include="Model\Geometric\Direction.cs" />
+    <Compile Include="Model\Geometric\Point.cs" />
+    <Compile Include="Model\Geometric\PointD.cs" />
+    <Compile Include="Model\Geometric\Shape.cs" />
+    <Compile Include="Model\Info\AreaInfo.cs" />
+    <Compile Include="Model\Info\AreaRoomsFormatsInfo.cs" />
+    <Compile Include="Model\Info\AreaType.cs" />
+    <Compile Include="Model\Info\BalconyWall.cs" />
+    <Compile Include="Model\Info\EnterWall.cs" />
+    <Compile Include="Model\Info\RoomFormat.cs" />
+    <Compile Include="Model\Info\RoomInfo.cs" />
+    <Compile Include="Model\Info\RoomType.cs" />
+    <Compile Include="Model\Info\StandartWall.cs" />
+    <Compile Include="Model\Info\Wall.cs" />
+    <Compile Include="Model\Info\WallType.cs" />
     <Compile Include="Model\RoomParameters.cs" />
+    <Compile Include="Model\RoomsGenerator.cs" />
+    <Compile Include="Model\Side.cs" />
+    <Compile Include="Model\TransformData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CommandSetupVM.cs" />
     <Compile Include="View\Pages\LayoutParameters.xaml.cs">

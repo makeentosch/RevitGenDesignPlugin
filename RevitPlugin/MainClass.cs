@@ -3,6 +3,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 using RevitPlugin.View;
+using RevitPlugin.ViewModel;
 using System.Linq;
 
 namespace RevitPlugin
@@ -14,24 +15,26 @@ namespace RevitPlugin
 		public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
 		{
 			var uiapp = commandData.Application;
-			var doc = uiapp.ActiveUIDocument.Document;
-			var sel = uiapp.ActiveUIDocument.Selection;
+			//var doc = uiapp.ActiveUIDocument.Document;
+			//var sel = uiapp.ActiveUIDocument.Selection;
 
-			Reference pickedref;
-			try
-			{
-				pickedref = sel.PickObject(ObjectType.Element, new WallSelectionFilter(), "Выберите экземпляр семейства Стены");
-			}
-			catch (Autodesk.Revit.Exceptions.OperationCanceledException)
-			{
-				return Result.Cancelled;
-			}
+			//Reference pickedref;
+			//try
+			//{
+			//	pickedref = sel.PickObject(ObjectType.Element, new WallSelectionFilter(), "Выберите экземпляр семейства Стены");
+			//}
+			//catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+			//{
+			//	return Result.Cancelled;
+			//}
 
-			var wall = doc.GetElement(pickedref) as FamilyInstance;
-			var geometry = wall.Symbol.get_Geometry(new Options());
-			var solid = geometry.Select(t => t as Solid).First(t => t.Volume > 0);
-			var face = solid.Faces.Cast<PlanarFace>().First(t => t.FaceNormal.Multiply(-1).IsAlmostEqualTo(XYZ.BasisZ));
-			var edges = face.GetEdgesAsCurveLoops().Single();
+			//var wall = doc.GetElement(pickedref) as FamilyInstance;
+			//var geometry = wall.Symbol.get_Geometry(new Options());
+			//var solid = geometry.Select(t => t as Solid).First(t => t.Volume > 0);
+			//var face = solid.Faces.Cast<PlanarFace>().First(t => t.FaceNormal.Multiply(-1).IsAlmostEqualTo(XYZ.BasisZ));
+			//var edges = face.GetEdgesAsCurveLoops().Single();
+
+			//////////////////////
 			//foreach (var line in edges)
 			//{
 			//	TaskDialog.Show("Длина грани", line.Length.ToString());
@@ -41,10 +44,14 @@ namespace RevitPlugin
 			//trans.Start("");
 			//trans.Commit();
 
-			var mainWindow = new PluginUI();
-			var result = mainWindow.ShowDialog() ?? false;
+			//var mainWindow = new PluginUI();
+			//var result = mainWindow.ShowDialog() ?? false;
 
-			return result ? Result.Succeeded : Result.Cancelled;	
+			//return result ? Result.Succeeded : Result.Cancelled;
+			
+			var vm = new CommandSetupVM(uiapp);
+			vm.Start();
+			return vm.CommandResult ?? Result.Failed;
 		}
 		/* С помощью фильтра при выделении объекта удалось добиться выбора экземпляра семейста Стены, даже если они в сборке.
          * На случай отмены операции пользователем обернул выделение в try...catch.

@@ -2,7 +2,6 @@
 using System.Linq;
 using AreaRoomsAPI.Geometric;
 using AreaRoomsAPI.Info;
-using Autodesk.Revit.DB;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Randomizations;
 

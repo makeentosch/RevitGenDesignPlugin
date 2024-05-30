@@ -3,9 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RevitPlugin.View.Pages"
+             xmlns:local="clr-namespace:AreaRoomsAPI.Info"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <Page.Resources>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type System:Enum}" x:Key="enumData">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:RoomType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -25,6 +33,15 @@
           ItemsSource="{Binding LayoutParameters}"
           Margin="0,50,0,0">
                 <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Тип комнаты" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox
+                                    ItemsSource="{Binding Source={StaticResource enumData}}"
+                                    SelectedValue="{Binding Path=RoomType, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Название" Width="*" Binding="{Binding Path=Name}"/>
                     <DataGridTextColumn Header="Ширина" Width="*" Binding="{Binding Path=Width}"/>
                     <DataGridTextColumn Header="Площадь" Width="*" Binding="{Binding Path=Area}"/>

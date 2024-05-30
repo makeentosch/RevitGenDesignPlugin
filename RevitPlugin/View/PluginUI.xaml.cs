@@ -23,7 +23,7 @@ namespace RevitPlugin.View
 		public PluginUI()
 		{
 			InitializeComponent();
-			DataContext = new ViewModel.CommandSetupVM(this);
+			//DataContext = new ViewModel.CommandSetupVM(this);
 		}
 	}
 }

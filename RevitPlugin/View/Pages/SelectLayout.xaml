@@ -11,11 +11,26 @@
             <RowDefinition/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" d:ItemsSource="{d:SampleData ItemCount=5}"/>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
             <Button Width="98" Content="Назад" Command="{Binding PreviousPage}"/>
             <Button Width="98" Content="Готово" Margin="5,0,0,0"/>
             <Button Width="98" Content="Отмена" Margin="5,0,0,0" Command="{Binding Cancel}"/>
         </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition MaxWidth="5"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" ItemsSource="{Binding GeneratedAreas}" SelectedItem="{Binding SelectedGenArea}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <GridSplitter Grid.Column="1"/>
+            <Canvas Name="Image" Grid.Column="2"/>
+        </Grid>
     </Grid>
 </Page>
