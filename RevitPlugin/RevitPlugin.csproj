@@ -55,6 +55,12 @@
     <Reference Include="CommunityToolkit.Mvvm, Version=8.2.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
       <HintPath>..\packages\CommunityToolkit.Mvvm.8.2.2\lib\netstandard2.0\CommunityToolkit.Mvvm.dll</HintPath>
     </Reference>
+    <Reference Include="GeneticSharp.Domain, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeneticSharp.2.6.0\lib\net462\GeneticSharp.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="GeneticSharp.Infrastructure.Framework, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeneticSharp.2.6.0\lib\net462\GeneticSharp.Infrastructure.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -62,9 +68,11 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI">
       <HintPath>..\..\..\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
       <HintPath>..\..\..\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -75,6 +83,12 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Primitives.4.3.0\lib\net45\System.Drawing.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -98,18 +112,52 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlatContour2D.cs" />
-    <Compile Include="GenAlgorithms\AreaChromosome.cs" />
-    <Compile Include="GenAlgorithms\AreaFitness.cs" />
-    <Compile Include="GenAlgorithms\AreaReinsertion.cs" />
-    <Compile Include="GenAlgorithms\AreaTournamentSelection.cs" />
-    <Compile Include="GenAlgorithms\RoomGene.cs" />
-    <Compile Include="Generate.cs" />
+    <Compile Include="API\AutodeskAPICreator.cs" />
+    <Compile Include="API\TransformData.cs" />
+    <Compile Include="GeneratedArea.cs" />
+    <Compile Include="GenerativeAlgorithm\MainGenerativeAlgorithm.cs" />
+    <Compile Include="GenerativeAlgorithm\RoomIntersectionChecker.cs" />
+    <Compile Include="GenerativeAlgorithm\RoomPositionAdjuster.cs" />
+    <Compile Include="GenerativeAlgorithm\RoomResizer.cs" />
+    <Compile Include="GeneticAlgorithm\AreaChromosome.cs" />
+    <Compile Include="GeneticAlgorithm\AreaFitness.cs" />
+    <Compile Include="GeneticAlgorithm\AreaReinsertion.cs" />
+    <Compile Include="GeneticAlgorithm\AreaTournamentSelection.cs" />
+    <Compile Include="GeneticAlgorithm\RoomGene.cs" />
+    <Compile Include="Geometry\ContourFlat2D.cs" />
+    <Compile Include="Geometry\Direction.cs" />
+    <Compile Include="Geometry\Point.cs" />
+    <Compile Include="Geometry\PointD.cs" />
+    <Compile Include="Geometry\Rectangle2D.cs" />
+    <Compile Include="Geometry\Shape.cs" />
+    <Compile Include="Geometry\Side2D.cs" />
+    <Compile Include="Interfaces\IGeometricShape2D.cs" />
     <Compile Include="MainClass.cs" />
+    <Compile Include="Model\Apartment.cs" />
+    <Compile Include="Model\Infos\AreaInfo.cs" />
+    <Compile Include="Model\Infos\AreaRoomsFormatsInfo.cs" />
+    <Compile Include="Model\Infos\RoomInfo.cs" />
+    <Compile Include="Model\RoomFormat.cs" />
     <Compile Include="Model\RoomParameters.cs" />
+    <Compile Include="Model\Rooms\Bathroom.cs" />
+    <Compile Include="Model\Rooms\Corridor.cs" />
+    <Compile Include="Model\Rooms\Kitchen.cs" />
+    <Compile Include="Model\Rooms\LivingRoom.cs" />
+    <Compile Include="Model\Rooms\Room.cs" />
+    <Compile Include="Model\Types\AreaType.cs" />
+    <Compile Include="Model\Types\RoomType.cs" />
+    <Compile Include="Model\Types\WallType.cs" />
+    <Compile Include="Model\Walls\BalconyWall.cs" />
+    <Compile Include="Model\Walls\EnterWall.cs" />
+    <Compile Include="Model\Walls\StandartWall.cs" />
+    <Compile Include="Model\Walls\Wall.cs" />
+    <Compile Include="ProcessingContour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomsGenerator.cs" />
+    <Compile Include="ViewModel\ApartmentParamsVM.cs" />
     <Compile Include="ViewModel\CommandSetupVM.cs" />
-    <Compile Include="View\Pages\LayoutParameters.xaml.cs">
+    <Compile Include="ViewModel\RoomsVM.cs" />
+    <Compile Include="View\ApartmentParams.xaml.cs">
       <DependentUpon>LayoutParameters.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\GeneratorParameters.xaml.cs">
@@ -124,6 +172,9 @@
     <Compile Include="View\PluginUI.xaml.cs">
       <DependentUpon>PluginUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Rooms.xaml.cs">
+      <DependentUpon>Rooms.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WallSelectionFilter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +183,10 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
+    <Page Include="View\ApartmentParams.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Pages\LayoutParameters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Rooms.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -161,7 +220,7 @@
   <Import Project="..\packages\CommunityToolkit.Mvvm.8.2.2\build\netstandard2.0\CommunityToolkit.Mvvm.targets" Condition="Exists('..\packages\CommunityToolkit.Mvvm.8.2.2\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\CommunityToolkit.Mvvm.8.2.2\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CommunityToolkit.Mvvm.8.2.2\build\netstandard2.0\CommunityToolkit.Mvvm.targets'))" />
   </Target>
